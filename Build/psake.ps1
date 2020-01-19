@@ -210,8 +210,8 @@ Task BuildDocs -depends Build {
         $YMLText = "{0}{1}`n" -f $YMLText, $Part
         $Part
     }
-    $YMLtext | Set-Content -Path "$env:BHModulePath\mkdocs.yml"
-    Copy-Item -Path "$env:BHModulePath\README.md" -Destination "$DocFolder\index.md" -Force
+    $YMLtext | Set-Content -Path "$env:BHProjectPath\mkdocs.yml"
+    Copy-Item -Path "$env:BHProjectPath\README.md" -Destination "$DocFolder\index.md" -Force
 
     [version]$ReleaseVersion = git describe --tags
 
