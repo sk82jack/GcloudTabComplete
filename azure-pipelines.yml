@@ -1,0 +1,69 @@
+name: $(TeamProject)_$(BuildDefinitionName)_$(SourceBranchName)_$(Date:yyyyMMdd)$(Rev:.r)
+trigger:
+- master
+- refs/tags/*
+pr:
+- master
+jobs:
+- job: Test_Build_Deploy
+  pool:
+    vmImage: 'vs2017-win2016'
+  steps:
+    - task: Powershell@2
+      displayName: 'Test'
+      inputs:
+        targetType: 'filePath'
+        filePath: .\Build\Start-Build.ps1
+        arguments: -Task Test -Verbose
+        errorActionPreference: 'stop'
+        failOnStderr: true
+
+    - task: PublishTestResults@2
+      displayName: 'Publish Test Results'
+      condition: and(always(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      inputs:
+        testRunner: 'NUnit'
+        testResultsFiles: '**/TestResults.xml'
+        testRunTitle: 'PS_Win2016'
+
+    - task: reportgenerator@4
+      displayName: 'Generate Code Coverage Report'
+      condition: and(always(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      inputs:
+        reports: 'TestCoverage.xml'
+        reporttypes: 'HtmlInline_AzurePipelines_Dark'
+        sourcedirs: $(CodeCoverageDirectories)
+        targetdir: coveragereport
+
+    - task: PublishCodeCoverageResults@1
+      displayName: 'Publish Code Coverage Results'
+      condition: and(always(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      inputs:
+        codeCoverageTool: 'JaCoCo'
+        summaryFileLocation: '**/TestCoverage.xml'
+
+    - task: Powershell@2
+      displayName: 'Set build version'
+      condition: and(always(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+      env:
+        BUILD_NAME: $(Build.BuildNumber)
+        GITHUB_PAT: $(github.pat)
+      inputs:
+        targetType: 'filePath'
+        filePath: .\Build\Start-Build.ps1
+        arguments: -Task SetBuildVersion -Verbose
+        errorActionPreference: 'stop'
+        failOnStderr: true
+
+    - task: Powershell@2
+      displayName: 'Build and deploy'
+      condition: startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+      env:
+        GITHUB_PAT: $(github.pat)
+        PSREPO_APIKEY: $(psrepo.apikey)
+      inputs:
+        targetType: 'filePath'
+        filePath: .\Build\Start-Build.ps1
+        arguments: -Task Deploy -Verbose
+        errorActionPreference: 'stop'
+        failOnStderr: true
