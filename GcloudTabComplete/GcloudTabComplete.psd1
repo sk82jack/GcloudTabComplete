@@ -15,7 +15,7 @@ RootModule = 'GcloudTabComplete.psm1'
 ModuleVersion = '0.1.0'
 
 # Supported PSEditions
-# CompatiblePSEditions = @()
+CompatiblePSEditions = @('Desktop', 'Core')
 
 # ID used to uniquely identify this module
 GUID = 'de5a239a-cb0e-4411-a29d-907a20a351e3'
