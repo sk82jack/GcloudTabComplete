@@ -259,7 +259,7 @@ Task Deploy -Depends TestAfterBuild {
     $lines
 
     "`n`tTesting for PowerShell repository API key"
-    if (-not $ENV:NugetApiKey) {
+    if (-not $ENV:PSREPO_APIKEY) {
         Write-Error "PowerShell repository API key not found"
     }
 
