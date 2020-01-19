@@ -1,4 +1,26 @@
 function Add-GcloudToProfile {
+    <#
+    .SYNOPSIS
+    Add the import module command to your profile
+
+    .DESCRIPTION
+    Add the import module command to your profile
+
+    It will be added to your current active profile if one is found. If not it will be added to
+    the CurrentUserCurrentHost profile
+
+    If your current profile is one of the AllUsers profiles but you are not running an elevated
+    console then an error will be thrown
+
+    .EXAMPLE
+    Add-GcloudToProfile
+
+    .LINK
+    https://gcloudtabcomplete.readthedocs.io/en/master/functions/Add-GcloudToProfile
+
+    .LINK
+    https://github.com/sk82jack/GcloudTabComplete/blob/master/GcloudTabComplete/Public/Add-GcloudToProfile.ps1
+    #>
     [CmdletBinding(SupportsShouldProcess)]
     param()
 
