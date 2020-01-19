@@ -168,7 +168,7 @@ Task Build -Depends Test {
             throw $_
         }
     }
-    if ($ReleaseVersion -le $GalleryVersion) {
+    if ($ReleaseVersion -le $GalleryVersion.Version) {
         Write-Error "Gallery version is higher than the release version. The release version must be increased"
     }
     Update-Metadata -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -Value $ReleaseVersion -ErrorAction stop
