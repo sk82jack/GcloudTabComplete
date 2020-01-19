@@ -180,7 +180,7 @@ Task BuildDocs -depends Build {
     "`n`tImporting the module and start building the yaml"
     "`t`tImporting from '$env:BHPSModuleManifest'"
     Import-Module -Name $env:BHPSModuleManifest -Global -Force -ErrorAction 'Stop'
-    $DocFolder = "$env:BHModulePath\docs"
+    $DocFolder = "$env:BHProjectPath\docs"
     $YMLtext = (Get-Content "$env:BHProjectPath\header-mkdocs.yml") -join "`n"
     $YMLtext = "$YMLtext`n  - Change Log: ChangeLog.md`n"
     $YMLText = "$YMLtext  - Functions:`n"
@@ -231,7 +231,7 @@ Task BuildDocs -depends Build {
         }
     }
     Update-Changelog @Params
-    Convertfrom-Changelog -Path "$env:BHModulePath\CHANGELOG.md" -OutputPath "$DocFolder\ChangeLog.md"
+    Convertfrom-Changelog -Path "$env:BHProjectPath\CHANGELOG.md" -OutputPath "$DocFolder\ChangeLog.md" -Format 'Release'
     "`n"
 }
 
