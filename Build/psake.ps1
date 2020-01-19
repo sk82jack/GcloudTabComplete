@@ -12,7 +12,7 @@ Properties {
         $Verbose = @{Verbose = $True}
     }
 
-    $PSRepository = ''
+    $PSRepository = 'https://www.powershellgallery.com/api/v2'
 
     $GitSettings = git config --list --show-origin
     $GitName = ($GitSettings | Select-String -Pattern '^file:(.*?)\s+user\.name=(.*?)$').Matches.Groups
