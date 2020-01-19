@@ -181,7 +181,7 @@ Task BuildDocs -depends Build {
     "`t`tImporting from '$env:BHPSModuleManifest'"
     Import-Module -Name $env:BHPSModuleManifest -Global -Force -ErrorAction 'Stop'
     $DocFolder = "$env:BHModulePath\docs"
-    $YMLtext = (Get-Content "$env:BHModulePath\header-mkdocs.yml") -join "`n"
+    $YMLtext = (Get-Content "$env:BHProjectPath\header-mkdocs.yml") -join "`n"
     $YMLtext = "$YMLtext`n  - Change Log: ChangeLog.md`n"
     $YMLText = "$YMLtext  - Functions:`n"
 
