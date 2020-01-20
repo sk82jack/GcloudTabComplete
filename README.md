@@ -45,6 +45,10 @@ To start using tab completion with the gcloud SDK just import the module into yo
 
 To avoid having to do this everytime when you start a new PowerShell session then add the import to your profile. To do this automatically run the function `Import-GcloudToProfile` which is provided as part of the module and it will add the import command to your currently used profile or `CurrentUserCurrentHost` if you're not currently using a profile. For more information on profiles then check [about_Profiles](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles)
 
+### Example
+
+![Example](https://raw.githubusercontent.com/sk82jack/GcloudTabComplete/master/docs/images/Example.gif)
+
 ## Contributing to GcloudTabComplete
 
 Interested in contributing? Read how you can [Contribute](https://github.com/sk82jack/GcloudTabComplete/blob/master/Contributing.md) to GcloudTabComplete
