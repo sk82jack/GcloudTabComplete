@@ -287,6 +287,18 @@ Task Deploy -Depends TestAfterBuild {
     "`tInvoking PSDeploy"
     Invoke-PSDeploy @Verbose @Params
 
+    "`tSetting git repository url"
+    if (!$ENV:GITHUB_PAT) {
+        Write-Error "GitHub personal access token not found"
+    }
+    $GitHubUrl = 'https://{0}@github.com/sk82jack/PSFPL.git' -f $ENV:GITHUB_PAT
 
+    "`tDeploying built docs to GitHub"
+    git add "$env:BHProjectPath\docs\*"
+    git add "$env:BHProjectPath\mkdocs.yml"
+    git add "$env:BHProjectPath\CHANGELOG.md"
+    git commit -m "Bump version to $ReleaseVersion`n***NO_CI***"
+    # --porcelain is to stop git sending output to stderr
+    git push $GitHubUrl HEAD:master --porcelain
 }
 
