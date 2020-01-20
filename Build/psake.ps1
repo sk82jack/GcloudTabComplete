@@ -263,22 +263,6 @@ Task Deploy -Depends TestAfterBuild {
         Write-Error "PowerShell repository API key not found"
     }
 
-
-
-    # Register the custom repository if it's not already registered
-    $InternalRepo = Get-PSRepository -Name InternalRepo -ErrorAction SilentlyContinue
-    If ($InternalRepo) {
-        $InternalRepo | Unregister-PSRepository
-    }
-    $RepositoryParams = @{
-        'Name'               = 'InternalRepo'
-        'SourceLocation'     = $PSRepository
-        'PublishLocation'    = $PSRepository
-        'InstallationPolicy' = 'Trusted'
-    }
-    "`nAdding repository '{0}'" -f $RepositoryParams.SourceLocation
-    Register-PSRepository @RepositoryParams
-
     $Params = @{
         Path    = "$ENV:BHProjectPath\Build"
         Force   = $true
