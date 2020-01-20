@@ -33,7 +33,7 @@ Copyright = '(c) 2020 Jack Denton. All rights reserved.'
 Description = 'Provide tab completion for the gcloud CLI interface'
 
 # Minimum version of the Windows PowerShell engine required by this module
-# PowerShellVersion = ''
+PowerShellVersion = '5.1'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
