@@ -7,6 +7,8 @@
 
 Provide tab completion for the gcloud CLI interface
 
+This module assumes that you have the gcloud SDK already installed and the installation path exists in the PATH environment variable
+
 Authored by Jack Denton
 
 ## Installing
