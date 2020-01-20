@@ -1,10 +1,13 @@
 # GcloudTabComplete
 
-![Build Status](https://build.status.url.here)
+[![Build Status](https://dev.azure.com/sk82jack/GcloudTabComplete/_apis/build/status/sk82jack.GcloudTabComplete)](https://dev.azure.com/sk82jack/GcloudTabComplete/_build/latest?definitionId=4)
+[![Documentation Status](https://readthedocs.org/projects/gcloudtabcomplete/badge/?version=latest)](https://gcloudtabcomplete.readthedocs.io/en/latest/?badge=latest)
 
 ## Description
 
 Provide tab completion for the gcloud CLI interface
+
+This module assumes that you have the gcloud SDK already installed and the installation path exists in the PATH environment variable
 
 Authored by Jack Denton
 
