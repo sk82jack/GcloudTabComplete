@@ -1,0 +1,12 @@
+site_name: GcloudTabComplete
+repo_url: https://github.com/sk82jack/GcloudTabComplete
+site_author: Jack Denton
+edit_uri: edit/master/docs/
+copyright: "AutoDocumentsExample is licensed under the <a href='https://github.com/sk82jack/GcloudTabComplete/raw/master/LICENSE'>MIT license</a>"
+theme: readthedocs
+pages:
+  - Home: index.md
+  - Change Log: ChangeLog.md
+  - Functions:
+    - Add-GcloudToProfile: functions/Add-GcloudToProfile.md
+
